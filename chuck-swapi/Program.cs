@@ -17,6 +17,7 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSet
 builder.Services.AddScoped<IApiCall, ApiCall>();
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", p => p.AllowAnyOrigin()));
 //p.WithOrigins("https://localhost:7127/", "https://localhost:3000/").WithMethods("GET")));
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 

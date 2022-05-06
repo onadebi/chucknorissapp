@@ -15,5 +15,8 @@
 
         public string ChuckMetaData { get; set; }
         public string SwapiMetaData { get; set; }
+
+
+        public int CachingDuration { get; set; }
     }
 }
