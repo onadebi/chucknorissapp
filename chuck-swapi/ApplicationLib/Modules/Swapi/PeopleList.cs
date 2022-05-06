@@ -32,6 +32,16 @@ namespace chuck_swapi.ApplicationLib.Modules.Swapi
                     if (response != null && response.IsSuccessful)
                     {
                         starWarsList = JsonConvert.DeserializeObject<StarWarsList>(response.Content);
+                        var recallCount = starWarsList.Count % starWarsList.Results.Count > 0 ? (starWarsList.Count / starWarsList.Results.Count)+1 : (starWarsList.Count / starWarsList.Results.Count);
+                        for(int i = 2; i <= recallCount; i++)
+                        {
+                            var recallResp = await _apiCall.RestCall(_appSettings.BaseSwapi, $"{_appSettings.SwapiPeopleResource}/?page={i}", -1, cancellationToken);
+                            if(recallResp != null && recallResp.IsSuccessful)
+                            {
+                                var nextStarWarsList = JsonConvert.DeserializeObject<StarWarsList>(recallResp.Content);
+                                starWarsList.Results.AddRange(nextStarWarsList.Results);
+                            }
+                        }
                         return GenResponse<StarWarsList>.Result(starWarsList, true);
                     }
                     else
