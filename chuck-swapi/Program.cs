@@ -16,7 +16,6 @@ builder.Services.AddMediatR(typeof(CategoryList.QueryList).Assembly);
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddScoped<IApiCall, ApiCall>();
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", p => p.AllowAnyOrigin()));
-//p.WithOrigins("https://localhost:7127/", "https://localhost:3000/").WithMethods("GET")));
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
@@ -24,9 +23,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
