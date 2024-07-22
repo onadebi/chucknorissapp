@@ -7,6 +7,8 @@ Star Wars API (SWAPI) : https://swapi.dev/api/people/
 # The application is currently deployed using Github actions from within Azure, and can be access at: https://chucknorrisapp.azurewebsites.net/swagger/index.html
 Application was built using .NET 6 (LTS) WebAPI
 
+## Also hosted in Docker container running at: https://chucknorissapp.onrender.com/swagger/index.html
+
 # Steps to Run locally:
 
 > 1. Clone repo from: https://github.com/onadebi/chucknorissapp
